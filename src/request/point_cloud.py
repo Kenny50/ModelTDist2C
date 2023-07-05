@@ -8,7 +8,7 @@ def get_point_cloud_data():
     num_rows = 100
     num_cols = 100
     min_value = 0.0
-    max_value = 15.0
+    max_value = 10.0
 
     # Generate the mock data
     mock_data = []
