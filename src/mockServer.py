@@ -3,16 +3,31 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 import time
-
+import random
 
 # Mock function for retrieving point cloud data
 def get_point_cloud_data():
     # Replace this function with Redis client implementation to retrieve data from Redis channel
     # For now, we'll return a mock data
-    mock_data = [
-        {'x': 1.2, 'y': 0.3, 'z': 0.4},
-        {'x': 5.1, 'y': 6.1, 'z': 7.4}
-    ]
+    # Set the dimensions and range of the data
+    num_rows = 100
+    num_cols = 100
+    min_value = 0.0
+    max_value = 15.0
+
+    # Generate the mock data
+    mock_data = []
+    for _ in range(num_rows):
+        row_data = []
+        for _ in range(num_cols):
+            data_point = {
+                'x': round(random.uniform(min_value, max_value), 2),
+                'y': round(random.uniform(min_value, max_value), 2),
+                'z': round(random.uniform(min_value, max_value), 2)
+            }
+            row_data.append(data_point)
+        # mock_data.append(row_data)
+        mock_data.extend(row_data)
     return mock_data
 
 # Distance to color conversion function
@@ -29,20 +44,17 @@ def send_color_request(colors):
     url = 'http://host.docker.internal:3000/d2color'
     data = {'colors': colors}
     headers = {'Content-Type': 'application/json'}
-    print('mock request')
     try:
         response = requests.post(url, data=json.dumps(data), headers=headers)
         response.raise_for_status()  # Raise an exception for non-2xx status codes
-        print('Color request sent successfully.')
     except requests.exceptions.HTTPError as err:
         print(f'Error sending color request. Status code: {err.response.status_code}')
     except requests.exceptions.RequestException as err:
         print(f'Error sending color request: {err}')
-        
+
 # Main function
 def process_data_periodically():
     while True:
-        print('test')
         # Retrieve point cloud data
         point_cloud = get_point_cloud_data()
 
