@@ -21,7 +21,6 @@ def send_color_request(colors):
     url = 'http://host.docker.internal:3000/d2color'
     data = {'colors': colors}
     headers = {'Content-Type': 'application/json'}
-    print('request')
     try:
         response = requests.post(url, data=json.dumps(data), headers=headers)
         response.raise_for_status()  # Raise an exception for non-2xx status codes
