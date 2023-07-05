@@ -1,0 +1,35 @@
+version: '3'
+services:
+  # redis:
+  #   image: redis:6.2.10
+  #   ports:
+  #     - "6379:6379"
+
+  # pub-simulator:
+  #   image: linker-modelt-redis-pub-simulator:v4.0
+  #   network_mode: host
+  #   depends_on:
+  #     - redis
+
+  tnn-modelt:
+    container_name: tnn-modelt
+    image: tnn-modelt:latest
+    ports:
+      - "3000:3000"
+    # depends_on:
+    #   - pub-simulator
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  python-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: modelt-py
+    image: modelt-py:latest
+    ports:
+      - 8000:8000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - tnn-modelt
