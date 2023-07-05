@@ -11,15 +11,15 @@ services:
   #   depends_on:
   #     - redis
 
-  tnn-modelt:
-    container_name: tnn-modelt
-    image: tnn-modelt:latest
-    ports:
-      - "3000:3000"
-    # depends_on:
-    #   - pub-simulator
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # tnn-modelt:
+  #   container_name: tnn-modelt
+  #   image: tnn-modelt:latest
+  #   ports:
+  #     - "3000:3000"
+  #   # depends_on:
+  #   #   - pub-simulator
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
 
   python-server:
     build:
