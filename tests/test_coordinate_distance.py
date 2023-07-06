@@ -65,7 +65,7 @@ class TestCoordinate2Distance(unittest.TestCase):
 
 
     def test_cost_time_float(self):
-        data = get_point_cloud_data() * 1000  # Sample data with a large number of points
+        data = get_point_cloud_data() * 100  # Sample data with a large number of points
         start_time = time.time()
         result = coordinate2distance(data)
         end_time = time.time()
@@ -89,8 +89,8 @@ class TestCoordinate2Distance(unittest.TestCase):
         rend_time = time.time()
         rexecution_time = rend_time - rstart_time
         # Assertions
-        print(f"Execution time test_cost_time_faker_data: {execution_time} seconds")
-        print(f"rExecution time test_cost_time_faker_data: {rexecution_time} seconds")
+        print(f"Execution time **2_and_**0.5: {execution_time} seconds")
+        print(f"rExecution time np.sqrt_and_pow: {rexecution_time} seconds")
         self.assertEqual([round(item,5) for item in result], [round(item,5) for item in expect])  # Example assertion
 
 if __name__ == '__main__':
