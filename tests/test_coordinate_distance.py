@@ -71,9 +71,14 @@ class TestCoordinate2Distance(unittest.TestCase):
         end_time = time.time()
         execution_time = end_time - start_time
 
+        rstart_time = time.time()
+        expect = [np.sqrt(pow(item['x'],2) + pow(item['y'],2) + pow(item['z'],2)) for item in data]
+        rend_time = time.time()
+        rexecution_time = rend_time - rstart_time
         # Assertions
-        self.assertEqual([], [])  # Example assertion
         print(f"Execution time: {execution_time} seconds")
+        print(f"rExecution time: {rexecution_time} seconds")
+        self.assertEqual([round(item,5) for item in result], [round(item,5) for item in expect])  # Example assertion
 
 if __name__ == '__main__':
     unittest.main()
