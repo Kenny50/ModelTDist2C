@@ -15,10 +15,9 @@ def process_data_periodically():
 
         # Call the distance2color function
         colors = color_conversion.distance2color(distances)
-        colors_2d = colors.reshape((100, 100))
 
         # Send the color request
-        http_request.send_color_request(colors_2d)
+        http_request.send_color_request(colors)
 
         # Pause for 1 second
         time.sleep(1)
