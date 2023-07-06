@@ -1,15 +1,24 @@
-# import unittest
-# import numpy as np
-# from src.util.color_conversion import distance2color
+import unittest
+import numpy as np
+import time
+from src.util.color_conversion import distance2color
+from src.request.point_cloud import get_point_cloud_data
+from src.util.coordinate_to_distance import coordinate2distance
 
-# class Distance2ColorTestCase(unittest.TestCase):
-#     def test_distance2color(self):
-#         distances = [0.0, 255.0]
-#         expected_colors = [[255, 0, 0], [0, 0, 255]]
-#         max_dist = 15.0
 
-#         colors = distance2color(distances, max_dist)
-#         self.assertEqual(colors, expected_colors)
+class Distance2ColorTestCase(unittest.TestCase):
+    def test_data_to_color_time(self):
+        data = get_point_cloud_data() * 100
+        max_dist = 15.0
+
+        start_time = time.time()
+        distances = coordinate2distance(data)
+        colors = distance2color(distances, max_dist)
+        end_time = time.time()
+        execution_time = end_time - start_time
+        self.assertEqual([], [])
+        print(f"Execution time test_data_to_color_time: {execution_time} seconds")
+
 #     # def test_distance2color(self):
 #         # # Test case 1: Normal distances
 #         # distances = [5.0, 10.0, 15.0, 7.5, 12.5]

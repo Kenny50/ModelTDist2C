@@ -51,7 +51,7 @@ class TestCoordinate2Distance(unittest.TestCase):
         result = coordinate2distance(data)
         self.assertEqual([np.round(result,10)], [17.3205080757])
 
-    def test_cost_time(self):
+    def test_cost_time_int(self):
         data = [{'x': 1, 'y': 2, 'z': 3}] * 1000000  # Sample data with a large number of points
 
         start_time = time.time()
@@ -61,7 +61,20 @@ class TestCoordinate2Distance(unittest.TestCase):
 
         # Assertions
         self.assertEqual(result, [np.sqrt(1**2 + 2**2 + 3**2)] * len(data))  # Example assertion
-        print(f"Execution time: {execution_time} seconds")
+        print(f"Execution time test_cost_time_int: {execution_time} seconds")
+
+
+    def test_cost_time_float(self):
+        data = get_point_cloud_data() * 100  # Sample data with a large number of points
+        start_time = time.time()
+        result = coordinate2distance(data)
+        end_time = time.time()
+        execution_time = end_time - start_time
+
+        expect = [(item['x'] ** 2 + item['y'] ** 2 + item['z'] ** 2) ** 0.5 for item in data]
+        # Assertions
+        self.assertEqual(result, expect)  # Example assertion
+        print(f"Execution time test_cost_time_float: {execution_time} seconds")
 
     def test_cost_time_faker_data(self):
         data = get_point_cloud_data()  # Sample data with a large number of points
@@ -76,8 +89,8 @@ class TestCoordinate2Distance(unittest.TestCase):
         rend_time = time.time()
         rexecution_time = rend_time - rstart_time
         # Assertions
-        print(f"Execution time: {execution_time} seconds")
-        print(f"rExecution time: {rexecution_time} seconds")
+        print(f"Execution time **2_and_**0.5: {execution_time} seconds")
+        print(f"rExecution time np.sqrt_and_pow: {rexecution_time} seconds")
         self.assertEqual([round(item,5) for item in result], [round(item,5) for item in expect])  # Example assertion
 
 if __name__ == '__main__':
