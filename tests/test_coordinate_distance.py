@@ -35,6 +35,11 @@ class TestCoordinate2Distance(unittest.TestCase):
         result = coordinate2distance(data)
         self.assertEqual(result, [np.sqrt(np.sqrt(1.2**2 + 0.2**2)**2 + 0.3**2)])
 
+        # Test case 2: test **2 euqal to pow
+        data = [{'x': 1.2, 'y': 0.2, 'z': 0.3}]
+        result = coordinate2distance(data)
+        self.assertEqual(result, [np.sqrt(np.sqrt(pow(pow(1.2, 2) + pow(0.2,2),2)) + pow(0.3,2))])
+
     def test_limit(self):
         # Test case 2: Single point, int
         data = [{'x': 0.0, 'y': 0.0, 'z': 0.0}]
