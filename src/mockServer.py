@@ -29,7 +29,7 @@ def process_data_periodically():
         # Send the color request
         http_request.send_color_request(zipped_data)
         # Pause for 1 second
-        time.sleep(0.005)
+        time.sleep(1)
 
 # Start the data processing
 process_data_periodically()
