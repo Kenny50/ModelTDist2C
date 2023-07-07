@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 screen_size = 40
-theta_spacing = 0.14
-phi_spacing = 0.04
+theta_spacing = 0.07
+phi_spacing = 0.02
 
 A = 1
 B = 1
