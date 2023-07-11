@@ -22,8 +22,9 @@ def process_data_periodically():
 
         zipped_data = []
 
-        for coord, color in zip(mock_coordinate, mock_colors):
+        for coord, color, dist in zip(mock_coordinate, mock_colors, mock_distances):
             coord['color'] = color
+            coord['distance'] = dist
             zipped_data.append(coord)
         
         # Send the color request
